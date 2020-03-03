@@ -17,7 +17,7 @@ spec:
   spec:
    containers:
    - name: myapp
-     image: jagdevops01/devops:tagversion
+     image: gcr.io/devopspipelinejag/jagdevops01/devops:tagversion
      ports:
      - containerPort: 8080
 
