@@ -30,17 +30,20 @@ pipeline {
 	   stage('Build Docker Image') { 
 		steps {
                    script {
-		      myimage = docker.build("jagdevops01/devops:${env.BUILD_ID}")
+	/*myimage = docker.build("jagdevops01/devops:${env.BUILD_ID}")*/
+		     myimage = docker.build("gcr.io/devopspipelinejag/jagdevops01/devops:${env.BUILD_ID}")
                    }
                 }
 	   }
 	   stage("Push Docker Image") {
                 steps {
                    script {
-                      docker.withRegistry('https://registry.hub.docker.com', 'Docker') {
+                    /*docker.withRegistry('https://registry.hub.docker.com', 'Docker') {
                             myimage.push("${env.BUILD_ID}")		
                      }
-			   
+                    */
+			   docker.withRegistry('https://gcr.io,'gcr:gcrcredential') {
+                            myimage.push("${env.BUILD_ID}")
                    }
                 }
             }
